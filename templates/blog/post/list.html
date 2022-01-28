@@ -1,0 +1,63 @@
+{% extends "blog/base.html" %}
+{% load blog_tags %}
+
+{% block title %} Blog {% endblock %}
+
+{% block content %}
+
+<div class="py-5 ">
+  <h3 class="pb-2 px-4 text-secondary">Blog</h3>
+
+  {% for post in posts %}
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+    <div class="col">
+      <div class="card border-light ss mb-4 bg-light" style="width: 44rem;">
+        <div class="card-body">
+          <div>
+            {% if post.image %}
+            <img src="{{ post.image.url}}" style="width:650px; height: 350px" class="img-fluid" />
+            {% endif %}
+          </div>
+          <h3 style="color: grey">
+            <a href="{{ post.get_absolute_url }}">
+              {{ post.title }}
+            </a>
+          </h3>
+
+          <h6><a href="/">{{ post.author.name}}</a></h6>
+          
+          <p class="date text-secondary" style="font-size: 12px;">
+            Published on {{ post.publish }}
+          </p>
+
+
+         <a>{{ post.body|markdown|truncatewords_html:50}}</a>
+          <!--truncate the strings after a certain number of words -->
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+  {% include "pagination.html" with page=posts %}
+
+  <h5>Blog</h5>
+  <p>This is my blog. I've written {% total_posts %} posts so far.</p>
+
+  <h3>Latest posts</h3>
+  {% show_latest_posts 3 %}
+
+  <h3>Most commented posts</h3>
+  {% get_most_commented_posts as most_commented_posts %}
+  <ul>
+    {% for post in most_commented_posts %}
+    <li>
+      <a href="/">{{ post.title }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+
+
+{% endblock %}

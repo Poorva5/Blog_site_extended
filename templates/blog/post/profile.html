@@ -1,0 +1,16 @@
+{% extends "blog/base.html" %}
+
+{% block title %}{{ user.phone}} {% endblock %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+    <div class="py-5">
+    <h6 class="my-4 text-secondary">Welcome to your profile, {{user.name}} </h6>
+    <h5 class="my-4 text-primary"> Your Name - {{ user.name}}</h5>
+    <h5 class="my-4 text-primary"> Your Phone - {{ user.phone}}</h5>
+    </div>
+
+    {% endif %}
+
+{% endblock %}
