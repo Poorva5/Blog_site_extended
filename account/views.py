@@ -3,11 +3,7 @@ from django.shortcuts import render
 # from .models import Account
 # from django.shortcuts import render
 from django.contrib import messages
-from django.contrib.auth import( 
-                                authenticate,
-                                logout,
-                                login,
-                                )
+from django.contrib.auth import authenticate,logout,login,
 from django.shortcuts import redirect, render
 from .forms import RegistrationForm, LoginForm
 from blog.models import Post
