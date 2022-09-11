@@ -1,5 +1,7 @@
 from distutils.command.upload import upload
 from pyexpat import model
+from statistics import mode
+from tabnanny import verbose
 from django.db import models
 from account.models import UserData
 from django.urls import reverse
@@ -16,11 +18,26 @@ class PublishedManager(models.Manager):
         return super(PublishedManager, self).get_queryset().filter(status='published')
             
 
+class Cateogry(models.Model):
+    name = models.CharField(max_length=100, db_index=True)
+    slug = models.SlugField(unique=True)
+
+    class Meta:
+        ordering = ('name',)
+
+    def __str__(self):
+        return self.name
+
+    # def get_absolute_url(self):
+    #     return reverse('blog:blog_list_by_category', args=[self.slug])
+    
+
 class Post(models.Model):
     STATUS_CHOICES = (
         ('draft', 'Draft'),
         ('published', 'Published'),
     )
+    category = models.ForeignKey(Cateogry, related_name='blog_category', on_delete=models.CASCADE)
     title = models.CharField(max_length=250)
     image = models.ImageField(upload_to = upload_location,null=True, blank=True)
     slug = models.SlugField(max_length=250, unique=True)
