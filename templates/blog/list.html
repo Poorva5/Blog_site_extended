@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}
+{% if category %}{{ category.name }} {% else %}Products{% endif %}
+{% endblock %}
+
+{% block content %}
+<section id="cat-sec">
+
+    <h1>Hi</h1>
+    <div class="py-5" id="cat">
+        <div class="container py-xl-5 py-lg-3">
+            <ul class="row text-center category-tab">
+                <p {% if not category %} class="selected" {% endif %}>
+                    <a href="{% url 'blog:post_list' %}">
+                        <div>
+                            <img src="/media/cayegory/all.jpg" style="border-radius: 50%; width:120px; height:120px ;">
+                            <br>
+                            <a class="pl-4 pt-2 text-dark mx-4 " href="{% url 'blog:post_list' %}">All
+                                Category</a>
+                        </div>
+                    </a>
+                </p>
+                {% for c in categories %}
+                <p {% if category.slug in c.slug %} class="selected" {% endif %}>
+
+                    <a href="{{ c.get_absolute_url }}">
+                        <div>
+                            <img src="{% if c.image %} {{c.image.url}} {% else %}{% endif %}"
+                                style="border-radius: 50%; width:120px; height:120px ;">
+                            <br>
+                            <a class="mx-lg-5 mx-sm-2 text-dark" style="text-decoration: none;"
+                                href="{{ c.get_absolute_url }}">
+                                {{ c.name }}
+                            </a>
+                        </div>
+                    </a>
+
+                </p>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="product-list container card border border-light ">
+        <!-- <h4>{% if category %}{{ category.name }}{% else %}All Products {% endif %}</h4> -->
+        <br><br>
+        <div class="row">
+            {% for product in products %}
+            <div class="item card col-lg-3 py-3" style="width:18rem; margin:20px ">
+                <a href="{{ product.get_absolute_url }}">
+                    <img class="card-img-top" src="{% if product.image %}{{ product.image.url}}{% else %}{% endif %}">
+                </a>
+                <a class="card-title" href="{{ product.get_absolute_url }}"> {{ product.name }}
+
+                </a>
+
+                <br>
+                <strong>
+                    <div style="color:#e04a8e"> ₹{{ product.price }}
+                    </div>
+                </strong>
+
+
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

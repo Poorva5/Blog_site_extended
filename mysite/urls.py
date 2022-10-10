@@ -19,6 +19,7 @@ from django.contrib.sitemaps.views import sitemap
 from blog.sitemaps import PostSitemap
 from . import settings
 from django.contrib.staticfiles.urls import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 sitemaps = {
     'posts': PostSitemap,
@@ -29,6 +30,6 @@ urlpatterns = [
     path('account/', include('account.urls')),
     path('blog/', include('blog.urls')),
     path('sitemap.xml', sitemap, {'sitemaps' : sitemaps}, name= 'django.contrib.sitemaps.views.sitemaps')
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += staticfiles_urlpatterns()

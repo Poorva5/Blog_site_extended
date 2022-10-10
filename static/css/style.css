@@ -1,105 +1,111 @@
-a {
-    text-decoration: none;
-    color: #4a4543;
-}
-
-a:hover {
-    color: #4a4543;
-
-}
-
-nav {
-    box-shadow: 0px 1px 9px 1px #e6e3e3;
-    padding: 1em 0;
-}
-
-label.of {
-    width: 80px;
-    height: 1.5px;
-    margin-top: -25px;
-    position: absolute;
-    top: 37px;
-    left: 450px;
-    background: #303030;
-}
-
-label.on {
-    width: 80px;
-    height: 1.5px;
-    margin-top: -25px;
-    position: absolute;
-    top: 37px;
-    left: 765px;
-    background: #303030;
-}
-
-.banner {
-    background: url(../blog/images/blog-image.jpg);
-    width: 100%;
-    height: 600px;
-    background-position: center;
-    -webkit-background-size: cover;
-    opacity: 0.8;
-    color: #FFFFFF
-}
-
-.banner-text h2 {
-    padding-right: 20px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
-    padding-top: 160px;
-    width: 1170px;
-    font-size: 40px;
-    font-weight: 600;
-    color: rgb(48, 45, 45);
-    text-align: center;
-    font-family: 'Raleway', sans-serif;
-}
-
-.banner-text p {
-    font-size: 20px;
-    color: rgb(243, 243, 236);
-    font-weight: 400;
-    line-height: 1.8em;
-    margin: 1em auto 2em;
-    width: 70%;
-    font-family: 'Open Sans', sans-serif;
-    text-align: center;
-}
-
-.banner-login {
-    background: url(../blog/images/blog-image.jpg) no-repeat;
-    height: 200px;
-    -webkit-background-size: cover;
-    background-position: center;
-    opacity: 0.8;
-}
-
-h3.title-left {
-    font-weight: bold;
-    font-size: 30px;
-    line-height: 40px;
-    margin-bottom: 40px;
-    padding-bottom: 0.3em;
+.top-navbar {
+    height: 95px !important;
+    border-bottom: 1px solid #c4c4c4;
     position: relative;
-    text-transform: capitalize;
-    border-bottom: 1px solid #b3a6a6;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-    text-align: left;
 }
 
-h3.title-left::before {
-    background-color: #22221c;
-    bottom: -2px;
-    content: "";
-    height: 2px;
-    left: 0;
+.navbar-brand {
     position: absolute;
-    width: 80px;
-    box-sizing: border-box;
+    left: 50%;
+    margin-left: -50px !important;
+    display: block;
 }
 
-.card-body {
-    background-color: white !important;
+.navbar-nav {
+    height: 68px !important;
+}
+
+.nav-item {
+    font-family: Karla, sans-serif;
+}
+
+.nav-link {
+    padding-top: 20px !important;
+    padding-right: 20px !important;
+    padding-left: 20px !important;
+    font-size: 18px !important;
+}
+
+.section-one {
+    height: 600px !important;
+    background-color: #ececec;
+}
+
+.section-two {
+    height: 1000px !important;
+    padding-top: 80px;
+}
+
+.categories {
+    grid-column-gap: 16px;
+    grid-row-gap: 16px;
+    justify-content: space-between;
+}
+
+.cat-food {
+    background-image: url(../images/cat-food.jpg);
+    height: 153px;
+    width: 287px;
+    background-size: cover;
+}
+
+.cat-link {
+    position: absolute;
+    margin-left: 80px;
+    margin-top: 55px;
+    padding: 13px 40px;
+    background-color: hsla(0, 0%, 100%, 0.95);
+    transition: background-color 200ms ease;
+    font-family: Montserrat, sans-serif;
+    color: #131313;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.cat-design {
+    background-image: url(../images/cat-design.jpg);
+    height: 153px;
+    width: 287px;
+    background-size: cover;
+}
+
+.cat-technology {
+    background-image: url(../images/cat-tech.jpg);
+    height: 153px;
+    width: 287px;
+    background-size: cover;
+}
+
+.cat-travel {
+    background-image: url(../images/cat-travel.jpg);
+    height: 153px;
+    width: 287px;
+    background-size: cover;
+}
+
+.side-word {
+    top: 8%;
+    right: auto;
+    bottom: 0%;
+    width: 8%;
+    font-size: 35px;
+    height: 100px;
+    margin-top: 19%;
+    margin-bottom: auto;
+    margin-left: 150px;
+    transform: rotate(-90deg);
+    font-family: 'Sorts Mill Goudy', sans-serif;
+}
+
+.h2-head {
+    font-size: 37.5px !important;
+    margin-top: 10rem;
+    margin-bottom: 10px;
+    font-family: 'Sorts Mill Goudy', sans-serif !important;
+    font-weight: 400;
+    border-bottom: 1px solid #c4c4c4;
 }

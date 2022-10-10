@@ -18,18 +18,21 @@ class PublishedManager(models.Manager):
         return super(PublishedManager, self).get_queryset().filter(status='published')
             
 
-class Cateogry(models.Model):
+class Category(models.Model):
     name = models.CharField(max_length=100, db_index=True)
     slug = models.SlugField(unique=True)
+    image = models.ImageField(upload_to='category', blank=True, null=True)
 
     class Meta:
         ordering = ('name',)
+        verbose_name = 'category'
+        verbose_name_plural = 'categories'
 
     def __str__(self):
         return self.name
 
-    # def get_absolute_url(self):
-    #     return reverse('blog:blog_list_by_category', args=[self.slug])
+    def get_absolute_url(self):
+        return reverse('blog:post_list_by_category', args=[self.slug])
     
 
 class Post(models.Model):
@@ -37,7 +40,7 @@ class Post(models.Model):
         ('draft', 'Draft'),
         ('published', 'Published'),
     )
-    category = models.ForeignKey(Cateogry, related_name='blog_category', on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, related_name='blog_category', on_delete=models.CASCADE)
     title = models.CharField(max_length=250)
     image = models.ImageField(upload_to = upload_location,null=True, blank=True)
     slug = models.SlugField(max_length=250, unique=True)
