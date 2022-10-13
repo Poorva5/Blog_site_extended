@@ -32,7 +32,7 @@
 }
 
 .section-two {
-    height: 1000px !important;
+    height: 2000px !important;
     padding-top: 80px;
 }
 
@@ -93,9 +93,8 @@
     bottom: 0%;
     width: 8%;
     font-size: 35px;
-    height: 100px;
-    margin-top: 19%;
-    margin-bottom: auto;
+    height: 50px;
+    margin-top: 10%;
     margin-left: 150px;
     transform: rotate(-90deg);
     font-family: 'Sorts Mill Goudy', sans-serif;
@@ -108,4 +107,67 @@
     font-family: 'Sorts Mill Goudy', sans-serif !important;
     font-weight: 400;
     border-bottom: 1px solid #c4c4c4;
+}
+
+.card {
+    border: transparent !important;
+    border-radius: 0% !important;
+    padding-bottom: 100px;
+    padding-top: 50px;
+
+}
+
+.post-sec {
+    grid-column-gap: 70px;
+    grid-row-gap: 16px;
+    align-items: flex-start;
+}
+
+.post-img {
+    height: 410px;
+    width: 370px;
+}
+
+.post-title-box {
+    position: absolute;
+    left: 0%;
+    top: auto;
+    right: 0%;
+    bottom: 0%;
+    margin-right: 34px;
+    margin-left: 34px;
+    padding: 30px;
+    background-color: #fff;
+}
+
+.body-post {
+    color: black;
+    font-family: 'Sorts Mill Goudy', sans-serif;
+    font-size: 25px;
+    line-height: 36px;
+    text-decoration: none;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.body-post:hover {
+    color: #575757;
+}
+
+.cat-title {
+    color: #575757;
+    font-family: Montserrat, sans-serif;
+    color: #919191;
+    font-size: 11.5px;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.cat-title:hover {
+    color: #575757;
 }

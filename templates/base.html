@@ -34,6 +34,26 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <div class="container-fluid d-flex justify-content-center">
                     <ul class="navbar-nav">
+                        {% if not user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current=" page" href="#">Food</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Design</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Travel</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#" tabindex="-1" aria-disabled="true">Technology</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#" tabindex="-1" aria-disabled="true">Sign up </a>
+                        </li>
+                        {% else %}
                         <li class="nav-item">
                             <a class="nav-link active" href="#">Create Blog</a>
                         </li>
@@ -53,17 +73,28 @@
                             <a class="nav-link active" href="#" tabindex="-1" aria-disabled="true">My
                                 Profile</a>
                         </li>
+
+                        {% endif %}
                     </ul>
                 </div>
             </div>
         </div>
     </nav>
 
+    <!------------------------- section one ------------------------->
+
     <section class="section-one">
         <div>
 
         </div>
     </section>
+
+    <!------------------------- end section one ------------------------->
+
+
+
+
+    <!------------------------- section two ------------------------->
 
     <section class="section-two">
         <div class="container d-flex categories">
@@ -79,36 +110,24 @@
             <div class="cat-travel">
                 <div class="cat-link">Travel</div>
             </div>
-
         </div>
 
 
         <div class="container">
-            <p class="h2-head">Food Blogs</p>
+            <p class="h2-head">Latest Blogs</p>
         </div>
-        <div id="food" class="food-cat-div">
+        <div id="food" class="food-cat-div d-flex">
             <div class="side-word">
-                <div>Food</div>
+                <div>Blogs</div>
             </div>
-            <div class="container">
-                haha
+            <div>
+                {% block content %}
+                {% endblock %}
             </div>
         </div>
     </section>
 
-
-
-
-    <div>
-        {% block content %}
-
-
-        {% endblock %}
-    </div>
-
-
-
-
+    <!------------------------- end section two ------------------------->
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"

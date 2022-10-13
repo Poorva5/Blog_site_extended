@@ -1,17 +1,9 @@
-from distutils.command.upload import upload
-from pyexpat import model
-from statistics import mode
-from tabnanny import verbose
 from django.db import models
 from account.models import UserData
 from django.urls import reverse
 from taggit.managers import TaggableManager
 from django.utils.text import slugify
-
-def upload_location(instance, filename, *args, **kwargs):
-    file_path = 'post/{author_id}/{title}-{filename}'.format(author_id=str(instance.author.id), title=str(instance.title), filename=filename)
-    return file_path
-
+from django.core.validators import MinLengthValidator
 
 class PublishedManager(models.Manager):
     def get_queryset(self):
@@ -41,8 +33,8 @@ class Post(models.Model):
         ('published', 'Published'),
     )
     category = models.ForeignKey(Category, related_name='blog_category', on_delete=models.CASCADE)
-    title = models.CharField(max_length=250)
-    image = models.ImageField(upload_to = upload_location,null=True, blank=True)
+    title = models.CharField(max_length=250, validators=[MinLengthValidator(30)])
+    image = models.ImageField(upload_to='post/%Y/%m/%d' ,null=True, blank=True)
     slug = models.SlugField(max_length=250, unique=True)
     author = models.ForeignKey(UserData, on_delete=models.CASCADE, related_name = 'blog_posts')
     body = models.TextField()
@@ -63,7 +55,7 @@ class Post(models.Model):
 
 
     def get_absolute_url(self):
-        return reverse('post_detail', args=[self.publish.year, self.publish.month, self.publish.day, self.slug])
+        return reverse('blog:post_detail', args=[self.publish.year, self.publish.month, self.publish.day, self.slug])
 
     def save(self, *args, **kwargs):
         self.slug = '-'.join((slugify(self.title), slugify(self.author)))
