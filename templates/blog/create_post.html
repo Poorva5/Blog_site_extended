@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %} Create New Post {% endblock %}
+
+{% block content %}
+
+<div class="container d-flex justify-content-center">
+    <div class="card"
+        style="padding-left: 50px; padding-right: 50px; padding-top: 30px; padding-bottom: 50px; border-width: 4px; margin-top: 40px;">
+        <h2 class="sec-two-text pt-5 pb-4"> Create New Blog</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="submit-btn mt-4">Create</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -10,12 +10,7 @@ class CommentForm(forms.ModelForm):
 class PostForm(forms.ModelForm):
     class Meta():
         model = Post
-        fields = ('title','image' ,'body', 'status',  'tags')
-        # widgets = {
-        #     'title': forms.TextInput(attrs={'class': 'textinputclass'}),
-        #     'body': forms.Textarea(attrs={'class': 'editable medium-editor-textarea postcontent'})
-
-        # }
+        fields = ('category','title','image' ,'body', 'status',  'tags')
     
     def __int__(self, *args, **kwargs):
         super(PostForm, self).__init__(*args, **kwargs)

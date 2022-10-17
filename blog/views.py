@@ -16,7 +16,7 @@ def home(request):
     context = {}
     data = Post.objects.all()
     context['posts'] = data
-    return render(request, "base.html", context )
+    return render(request, "blog/list.html", context )
 
 def post_list(request, category_slug=None):
     category = None
@@ -62,73 +62,67 @@ def post_detail(request, year, month, day, post):
 
     
 
-# #create new post
-# def create_post(request):
-#     form = PostForm()
-#     if request.method == "POST":
-#         form = PostForm(request.POST or None, request.FILES or None)
-#         if form.is_valid():
-#             instance = form.save(commit=False)
-#             instance.author = request.user
-#             instance.save()
-#             form.save_m2m()
-#             messages.success(request, "Post was created successfully")
-#             return redirect("home")
-#         else:
-#             messages.error(request, "Post was created successfully")
-#             print(form.errors)
-#             form = PostForm()
-#             return render(request, "blog/post/create_post.html", {'form': form})
-#     context = {'form': form}
-#     return render(request, "blog/post/create_post.html", context)
+#create new post
+def create_post(request):
+    form = PostForm()
+    if request.method == "POST":
+        form = PostForm(request.POST or None, request.FILES or None)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.author = request.user
+            instance.save()
+            form.save_m2m()
+            messages.success(request, "Post was created successfully")
+            return redirect("blog:home")
+        else:
+            messages.error(request, "Post was created successfully")
+            print(form.errors)
+            form = PostForm()
+            return render(request, "blog/create_post.html", {'form': form})
+    context = {'form': form}
+    return render(request, "blog/create_post.html", context)
 
 
-# def post_detail(request, year, month, day, post):
-#     item = get_object_or_404(Post , slug=post, status='published', publish__year=year, publish__month=month, publish__day=day)
-#     user = request.user
-#     context = {
-#         'item': item
-#     }
-#     return render(request, "blog/post/post_detail.html", context)
+def post_detail(request, year, month, day, post):
+    item = get_object_or_404(Post , slug=post, status='published', publish__year=year, publish__month=month, publish__day=day)
+    user = request.user
+    context = {
+        'item': item
+    }
+    return render(request, "blog/post_detail.html", context)
 
 
+def update_post(request, slug):
+    context = {}
+    user = request.user
+    post = get_object_or_404(Post, slug=slug)
+    if request.method  == 'POST':
+        form = UpdatePostForm(request.POST or None, request.FILES or None, instance=post)
+        if form.is_valid():
+            item = form.save(commit=False)
+            item.save()
+            context['success_message'] = "updated"
+            post = item
+            messages.success(request, "{} was updated".format(item.title))
+            return HttpResponseRedirect(post.get_absolute_url())
 
-# def update_post(request, slug):
-#     context = {}
-#     user = request.user
-#     post = get_object_or_404(Post, slug=slug)
-#     if request.method  == 'POST':
-#         form = UpdatePostForm(request.POST or None, request.FILES or None, instance=post)
-#         if form.is_valid():
-#             item = form.save(commit=False)
-#             item.save()
-#             context['success_message'] = "updated"
-#             post = item
-#             messages.success(request, "{} was updated".format(item.title))
-#             return HttpResponseRedirect(post.get_absolute_url())
+    form = UpdatePostForm(initial={
+        'title': post.title,
+        'body' : post.body,
+        'image': post.image
+    })
 
-#     form = UpdatePostForm(initial={
-#         'title': post.title,
-#         'body' : post.body,
-#         'image': post.image
-#     })
+    context['form'] = form
+    return render(request, "blog/update_post.html", context)
 
-#     context['form'] = form
-#     return render(request, "blog/post/update_post.html", context)
-
-# class post_delete(DeleteView):
-#     model = Post
-#     template_name = 'blog/post/delete_post.html'
-#     success_url = reverse_lazy("home")
-#     success_message = "Post Deleted Successfully"
+class post_delete(DeleteView):
+    model = Post
+    template_name = 'blog/delete_post.html'
+    success_url = reverse_lazy("blog:home")
+    success_message = "Post Deleted Successfully"
 
 
 # class AddCommentView(CreateView):
 #     model = Comment
 #     template_name = 'blog/post/comment_form.html'
 #     fields = '__all__'  
-
-
-# def profile_page(request, phone):
-#     user = UserData.objects.get(phone=phone)
-#     return render(request, 'blog/post/profile.html', {"user": user})

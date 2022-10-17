@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %} {% trans "Log in" %} {% endblock %}
+
+{% block content %}
+<div class="container pb-5">
+    <div class="div-auth">
+        <h5 class="sec-two-text pt-5 pb-4">Login</h5>
+        <form method="post">
+            {% csrf_token %}
+            {{login_form.as_p}}
+            <p><input type="submit" value="{% trans 'Log in' %}" class="submit-btn"></p>
+        </form>
+    </div>
+</div>
+{% endblock %}

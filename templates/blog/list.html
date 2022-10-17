@@ -1,24 +1,55 @@
 {% extends "base.html" %}
 
+{% block title %} Posts {% endblock %}
+
 {% block content %}
 
-<div class="d-flex post-sec" style="flex-wrap: wrap;">
-    {% for post in posts %}
-    <div class="card">
-        {% if post.image %}
-        <img src="{{post.image.url}}" alt="" class="post-img">
-        {% endif %}
 
-        <div class="post-title-box">
-            <div>
-                <a href="#" class="cat-title">{{post.category}}</a>
-            </div>
-            <div>
-                <a href="#" class="body-post mt-2">{{post.title}}</a>
+<section class="section-two">
+    <div class="container d-flex categories">
+        <div class="cat-food">
+            <div class="cat-link">Food</div>
+        </div>
+        <div class="cat-design">
+            <div class="cat-link">Design</div>
+        </div>
+        <div class="cat-technology">
+            <div class="cat-link">Tech</div>
+        </div>
+        <div class="cat-travel">
+            <div class="cat-link">Travel</div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <p class="h2-head">Latest Blogs</p>
+    </div>
+    <div id="food" class="food-cat-div d-flex">
+        <div class="side-word">
+            <div>Blogs</div>
+        </div>
+        <div>
+            <div class="d-flex post-sec" style="flex-wrap: wrap;">
+                {% for post in posts %}
+                <div class="card">
+                    {% if post.image %}
+                    <img src="{{post.image.url}}" alt="" class="post-img">
+                    {% endif %}
+
+                    <div class="post-title-box">
+                        <div>
+                            <a href="#" class="cat-title">{{post.category}}</a>
+                        </div>
+                        <div>
+                            <a href="{{post.get_absolute_url}}" class="body-post mt-2">{{post.title}}</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
-    {% endfor %}
-</div>
+</section>
 
 {% endblock %}

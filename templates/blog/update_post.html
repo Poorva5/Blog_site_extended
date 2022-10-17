@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container d-flex justify-content-center">
+    <div class="card"
+        style="padding-left: 50px; padding-right: 50px; padding-top: 30px; padding-bottom: 50px; border-width: 4px; margin-top: 40px;">
+        <h2 class="sec-two-text pt-5 pb-4">Update Your Post Here</h2>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" class="submit-btn mt-4 mb-5" value="UPDATE">
+        </form>
+    </div>
+</div>
+{% endblock %}

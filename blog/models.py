@@ -33,7 +33,7 @@ class Post(models.Model):
         ('published', 'Published'),
     )
     category = models.ForeignKey(Category, related_name='blog_category', on_delete=models.CASCADE)
-    title = models.CharField(max_length=250, validators=[MinLengthValidator(30)])
+    title = models.CharField(max_length=250, validators=[MinLengthValidator(20)])
     image = models.ImageField(upload_to='post/%Y/%m/%d' ,null=True, blank=True)
     slug = models.SlugField(max_length=250, unique=True)
     author = models.ForeignKey(UserData, on_delete=models.CASCADE, related_name = 'blog_posts')
