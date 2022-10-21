@@ -37,6 +37,24 @@ nav {
     background-color: #ececec;
 }
 
+.blog-header-img {
+    background-image: url(../images/blog-top.jpg);
+    height: 464px;
+    width: 1300px;
+    background-size: cover;
+    opacity: 0.8;
+}
+
+.heading-over-img {
+    background-color: white;
+    height: 100px;
+    width: 800px;
+    opacity: 0.7;
+    font-family: Euclid Circular, Arial, sans-serif, Helvetica;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
 .section-two {
     height: auto;
     padding-top: 80px;

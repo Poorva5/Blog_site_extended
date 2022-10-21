@@ -31,9 +31,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['15.207.8.22', '127.0.0.1']
 
-
 AUTH_USER_MODEL = 'account.UserData'
- 
 
 SITE_ID = 1
 
@@ -136,7 +134,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static/')
 ]
 
-#Media files 
+# Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 

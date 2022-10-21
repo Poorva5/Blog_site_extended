@@ -14,8 +14,12 @@ from .forms import PostForm
 
 def home(request):
     context = {}
+    categories = Category.objects.all()
     data = Post.objects.all()
-    context['posts'] = data
+    context = {
+        'posts': data,
+        'categories':categories,
+    }
     return render(request, "blog/list.html", context )
 
 def post_list(request, category_slug=None):
