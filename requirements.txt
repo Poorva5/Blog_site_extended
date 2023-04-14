@@ -1,5 +1,4 @@
 asgiref==3.5.2
-backports.zoneinfo==0.2.1
 Django==4.1
 django-markdown==0.8.4
 django-taggit==3.0.0
