@@ -1,8 +1,8 @@
 from django.contrib import admin
 from .models import Post, Comment, Category
+from import_export.admin import ImportExportMixin
 
-@admin.register(Post)
-class PostAdmin(admin.ModelAdmin):
+class PostAdmin(ImportExportMixin, admin.ModelAdmin):
     list_display = ('title', 'slug', 'author', 'publish', 'status')
     list_filter = ('status', 'created', 'publish', 'author')
     search_fields = ('title', 'body')
@@ -11,16 +11,21 @@ class PostAdmin(admin.ModelAdmin):
     date_hierarchy = 'publish'
     ordering = ('status', 'publish')
 
-@admin.register(Comment)
-class CommentAdmin(admin.ModelAdmin):
+admin.site.register(Post, PostAdmin)
+
+class CommentAdmin(ImportExportMixin, admin.ModelAdmin):
     list_display = ('name','post', 'created', 'active')
     list_filter = ('active', 'created', 'updated')
     search_fields = ('name', 'body')
 
-@admin.register(Category)
+admin.site.register(Comment, CommentAdmin)
+
+
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name',)
     prepopulated_fields = {'slug':('name',)}
+
+admin.site.register(Category, CategoryAdmin)
 
     
 

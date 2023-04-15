@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.sitemaps',
     'account',
+    'import_export',
 ]
 
 MIDDLEWARE = [
